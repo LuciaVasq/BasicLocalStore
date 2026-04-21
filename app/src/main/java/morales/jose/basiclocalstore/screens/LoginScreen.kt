@@ -43,7 +43,7 @@ fun LoginScreen(viewModel: AuthViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFFBF9EFD), Color(0xFF8B96F3)))),
+            .background(Brush.verticalGradient(listOf(Color(0xFFE87373), Color(0xFFFFFCF1)))),
         contentAlignment = Alignment.Center
     ) {
         Card (
@@ -59,7 +59,7 @@ fun LoginScreen(viewModel: AuthViewModel) {
                     text = "POKÉDEX LOGIN",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0B0D42)
+                    color = Color(0xFF420B0B)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
@@ -82,7 +82,7 @@ fun LoginScreen(viewModel: AuthViewModel) {
                 Button(
                     onClick = { viewModel.login(user, pass) },
                     modifier = Modifier.fillMaxWidth().height(50.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC996E8)),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEFC680)),
                     shape = RoundedCornerShape(12.dp)
                 ) {
                     Text("¡ENTRAR!", fontWeight = FontWeight.Bold)
