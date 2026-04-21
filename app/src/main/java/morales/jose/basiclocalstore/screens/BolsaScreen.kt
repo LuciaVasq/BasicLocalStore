@@ -33,7 +33,7 @@ fun BolsaScreen(pokemonViewModel: PokemonViewModel) {
         topBar = {
             Column(
                 modifier = Modifier
-                    .background(Color(0xFFEC6161)) // Rojo Pokémon
+                    .background(Color(0xFFEC6161))
                     .padding(16.dp)
                     .statusBarsPadding()
             ) {

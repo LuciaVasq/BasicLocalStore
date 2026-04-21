@@ -47,7 +47,7 @@ fun HomeScreen(username: String, onLogout: () -> Unit, onBolsaClick: () -> Unit,
         )
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            MenuCard("Ver Bolsa", Icons.Default.List, Color(0xFFE899F1), Modifier.weight(1f), onBolsaClick)
+            MenuCard("Ver Bolsa", Icons.Default.List, Color(0xFFF1D199), Modifier.weight(1f), onBolsaClick)
             MenuCard("Capturar", Icons.Default.Add, Color(0xFFE17190), Modifier.weight(1f), onCapturarClick)
         }
 

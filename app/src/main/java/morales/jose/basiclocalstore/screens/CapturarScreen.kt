@@ -62,7 +62,7 @@ fun CapturarScreen(pokemonViewModel: PokemonViewModel, onBack: () -> Unit) {
         Button(
             onClick = { pokemonViewModel.searchPokemon() },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF1DF81))
         ) {
             Text("BUSCAR EN LA HIERBA")
         }
@@ -72,7 +72,7 @@ fun CapturarScreen(pokemonViewModel: PokemonViewModel, onBack: () -> Unit) {
             Button(
                 onClick = { pokemonViewModel.capturePokemon() },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCC0000))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFA82D2D))
             ) {
                 Text("¡LANZAR POKÉBALL!")
             }
@@ -84,7 +84,6 @@ fun CapturarScreen(pokemonViewModel: PokemonViewModel, onBack: () -> Unit) {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // Botón para guardar todo en la base de datos (CRUD: Create)
         if (pokemonViewModel.capturedPokemon.isNotEmpty()) {
             ElevatedButton(
                 onClick = {
