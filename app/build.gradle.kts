@@ -8,13 +8,13 @@ plugins {
 android {
     namespace = "morales.jose.basiclocalstore"
     compileSdk {
-        version = release(35)
+        version = release(36)
     }
 
     defaultConfig {
         applicationId = "morales.jose.basiclocalstore"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
