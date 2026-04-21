@@ -1,33 +1,16 @@
 package morales.jose.basiclocalstore.screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -35,45 +18,129 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(username: String, onLogout: () -> Unit, onBolsaClick: () -> Unit, onCapturarClick: () -> Unit) {
+fun HomeScreen(
+    username: String,
+    onLogout: () -> Unit,
+    onBolsaClick: () -> Unit,
+    onCapturarClick: () -> Unit
+) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    listOf(Color(0xFFE87373), Color(0xFFFFFCF1))
+                )
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Bienvenido, Entrenador $username",
-            style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(vertical = 24.dp)
-        )
+        // ── Header ────────────────────────────────────────────────────────────
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .padding(horizontal = 24.dp, vertical = 32.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = "🔴⚪ POKÉDEX",
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color(0xFF420B0B),
+                    letterSpacing = 2.sp
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Bienvenido, Entrenador $username",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color(0xFF7B2020),
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
 
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            MenuCard("Ver Bolsa", Icons.Default.List, Color(0xFFF1D199), Modifier.weight(1f), onBolsaClick)
-            MenuCard("Capturar", Icons.Default.Add, Color(0xFFE17190), Modifier.weight(1f), onCapturarClick)
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // ── Menu cards ────────────────────────────────────────────────────────
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            MenuCard(
+                title = "Mi Bolsa",
+                emoji = "🎒",
+                subtitle = "Ver Pokémon",
+                color = Color(0xFF3B4CCA),
+                modifier = Modifier.weight(1f),
+                onClick = onBolsaClick
+            )
+            MenuCard(
+                title = "Capturar",
+                emoji = "⚫",
+                subtitle = "Área Salvaje",
+                color = Color(0xFFCC3333),
+                modifier = Modifier.weight(1f),
+                onClick = onCapturarClick
+            )
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
-        TextButton(onClick = onLogout) {
-            Text("Cerrar Sesión", color = Color.Gray)
+        TextButton(
+            onClick = onLogout,
+            modifier = Modifier.padding(bottom = 32.dp)
+        ) {
+            Text("Cerrar Sesión", color = Color(0xFF7B2020))
         }
     }
 }
 
 @Composable
-fun MenuCard(title: String, icon: ImageVector, color: Color, modifier: Modifier, onClick: () -> Unit) {
+fun MenuCard(
+    title: String,
+    emoji: String,
+    subtitle: String,
+    color: Color,
+    modifier: Modifier,
+    onClick: () -> Unit
+) {
     Card(
         onClick = onClick,
-        modifier = modifier.height(150.dp),
-        colors = CardDefaults.cardColors(containerColor = color.copy(alpha = 0.1f)),
-        border = BorderStroke(2.dp, color)
+        modifier = modifier.height(160.dp),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(48.dp))
-            Text(title, fontWeight = FontWeight.Bold, color = color)
+        Box(modifier = Modifier.fillMaxSize()) {
+            // Coloured accent top bar
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(5.dp)
+                    .background(color)
+            )
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(emoji, fontSize = 44.sp)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    title,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = color,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    subtitle,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color.Gray
+                )
+            }
         }
     }
 }

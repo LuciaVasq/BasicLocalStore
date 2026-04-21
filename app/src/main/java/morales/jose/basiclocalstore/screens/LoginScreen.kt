@@ -92,8 +92,3 @@ fun LoginScreen(viewModel: AuthViewModel) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview(){
-    LoginScreen(viewModel = AuthViewModel(DataStoreManager(LocalContext.current)))
-}
